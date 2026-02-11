@@ -1,0 +1,228 @@
+{
+  "main": {
+    "id": "586670f76868ffb4",
+    "type": "split",
+    "children": [
+      {
+        "id": "dbece7131ef5602d",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "27d1776512f63cc1",
+            "type": "leaf",
+            "state": {
+              "type": "graph",
+              "state": {},
+              "icon": "lucide-git-fork",
+              "title": "그래프 뷰"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "fc22f6c5d079d742",
+    "type": "split",
+    "children": [
+      {
+        "id": "54a2880248a02041",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "e2f1e7b548c32d4e",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical",
+                "autoReveal": false
+              },
+              "icon": "lucide-folder-closed",
+              "title": "파일 탐색기"
+            }
+          },
+          {
+            "id": "cb836d020219e8e1",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              },
+              "icon": "lucide-search",
+              "title": "검색"
+            }
+          },
+          {
+            "id": "7a399d00cc913407",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {},
+              "icon": "lucide-bookmark",
+              "title": "북마크"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "right": {
+    "id": "a5845672178d5898",
+    "type": "split",
+    "children": [
+      {
+        "id": "9246984c9bf5a951",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "43c1730298049e98",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-coming-in",
+              "title": "백링크"
+            }
+          },
+          {
+            "id": "d6ac966584294bec",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-going-out",
+              "title": "나가는 링크"
+            }
+          },
+          {
+            "id": "b13164eeafb020fb",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-tags",
+              "title": "태그"
+            }
+          },
+          {
+            "id": "6b6a9ed832dd22b4",
+            "type": "leaf",
+            "state": {
+              "type": "all-properties",
+              "state": {
+                "sortOrder": "frequency",
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-archive",
+              "title": "모든 속성"
+            }
+          },
+          {
+            "id": "13ae3d07bcd84208",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "followCursor": false,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-list",
+              "title": "개요"
+            }
+          },
+          {
+            "id": "face3287f57703a5",
+            "type": "leaf",
+            "state": {
+              "type": "git-view",
+              "state": {},
+              "icon": "git-pull-request",
+              "title": "Source Control"
+            }
+          }
+        ],
+        "currentTab": 5
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:빠른 전환기 열기": false,
+      "graph:그래프 뷰 열기": false,
+      "canvas:새 캔버스 만들기": false,
+      "daily-notes:오늘의 일일 노트 열기": false,
+      "templates:템플릿 삽입": false,
+      "command-palette:명령어 팔레트 열기": false,
+      "bases:새 베이스 생성하기": false,
+      "table-editor-obsidian:Advanced Tables Toolbar": false,
+      "obsidian-git:Open Git source control": false
+    }
+  },
+  "active": "27d1776512f63cc1",
+  "lastOpenFiles": [
+    "Projects/Settings/obsidian + git.md",
+    "Projects/Settings",
+    "Projects/Obslog/개념정리/Rendering/TTFB.md",
+    "Projects/Obslog/개념정리/Rendering/SSR.md",
+    "Projects/Obslog/개념정리/Rendering/SSG.md",
+    "Projects/Obslog/개념정리/Rendering/Next.js Rendering.md",
+    "Projects/Obslog/개념정리/Rendering/Next.js AppRouter에서의 작동방식.md",
+    "Projects/Obslog/개념정리/Rendering/ISR.md",
+    "Projects/Obslog/개념정리/Rendering/Hydration.md",
+    "Projects/Obslog/개념정리/Rendering/CSR.md",
+    "Projects/Obslog/개념정리/개념정리.md",
+    "Projects/Obslog/개념정리/Server Component vs Client Component.md",
+    "Projects/Obslog/개념정리/Route Group.md",
+    "Projects/Obslog/개념정리/Rendering",
+    "Projects/Obslog/개념정리/App Router vs Page Router.md",
+    "Projects/Obslog/npm/tailwind-typography.md",
+    "Projects/Obslog/npm/shiki.md",
+    "Projects/Obslog/npm/remark, remark-html.md",
+    "Projects/Obslog/npm/npm.md",
+    "Projects/Obslog/npm/next-auth.md",
+    "Projects/Obslog/npm/gray-matter.md",
+    "Projects/Obslog/npm/clsx.md",
+    "Projects/Obslog/images/Obslog.png",
+    "Projects/Obslog/Phase/Phase.md",
+    "Projects/Obslog/Phase/Phase 1.md",
+    "Projects/Obslog/Phase/Phase 0 [개발 환경 & 개념].md",
+    "Projects/Obslog/개념정리",
+    "Projects/Obslog/npm",
+    "Projects/Obslog/images",
+    "Projects/Obslog/Stack.md",
+    "Projects/Obslog/Phase",
+    "Projects/Obslog/Obslog.md",
+    "Projects/Obslog",
+    "Projects"
+  ]
+}
