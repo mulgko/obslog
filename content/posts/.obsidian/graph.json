@@ -1,22 +1,58 @@
 {
-  "collapse-filter": true,
+  "collapse-filter": false,
   "search": "",
-  "showTags": false,
+  "showTags": true,
   "showAttachments": false,
   "hideUnresolved": false,
   "showOrphans": true,
   "collapse-color-groups": true,
-  "colorGroups": [],
+  "colorGroups": [
+    {
+      "query": "tag:#개념  ",
+      "color": {
+        "a": 1,
+        "rgb": 7393279
+      }
+    },
+    {
+      "query": "tag:#project  ",
+      "color": {
+        "a": 1,
+        "rgb": 16718472
+      }
+    },
+    {
+      "query": "tag:#phase  ",
+      "color": {
+        "a": 1,
+        "rgb": 16753485
+      }
+    },
+    {
+      "query": "tag:#npm  ",
+      "color": {
+        "a": 1,
+        "rgb": 16768092
+      }
+    },
+    {
+      "query": "tag:#stack  ",
+      "color": {
+        "a": 1,
+        "rgb": 9846562
+      }
+    }
+  ],
   "collapse-display": true,
   "showArrow": false,
   "textFadeMultiplier": 0,
   "nodeSizeMultiplier": 1,
   "lineSizeMultiplier": 1,
-  "collapse-forces": true,
-  "centerStrength": 0.518713248970312,
-  "repelStrength": 10,
-  "linkStrength": 1,
-  "linkDistance": 250,
-  "scale": 0.9286057606850079,
+  "collapse-forces": false,
+  "centerStrength": 0.428949652777778,
+  "repelStrength": 14.1345486111111,
+  "linkStrength": 0.879340277777778,
+  "linkDistance": 152,
+  "scale": 0.5897657721899267,
   "close": true
 }

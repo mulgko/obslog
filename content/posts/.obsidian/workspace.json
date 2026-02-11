@@ -4,11 +4,21 @@
     "type": "split",
     "children": [
       {
-        "id": "dbece7131ef5602d",
+        "id": "33260b582af03480",
         "type": "tabs",
         "children": [
           {
-            "id": "27d1776512f63cc1",
+            "id": "ff3b980c89daf55f",
+            "type": "leaf",
+            "state": {
+              "type": "empty",
+              "state": {},
+              "icon": "lucide-file",
+              "title": "새 탭"
+            }
+          },
+          {
+            "id": "8233ccb847e2ff07",
             "type": "leaf",
             "state": {
               "type": "graph",
@@ -17,7 +27,8 @@
               "title": "그래프 뷰"
             }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -74,7 +85,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300
+    "width": 200
   },
   "right": {
     "id": "a5845672178d5898",
@@ -173,7 +184,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300
+    "width": 237.5
   },
   "left-ribbon": {
     "hiddenItems": {
@@ -188,10 +199,10 @@
       "obsidian-git:Open Git source control": false
     }
   },
-  "active": "27d1776512f63cc1",
+  "active": "e2f1e7b548c32d4e",
   "lastOpenFiles": [
-    "Projects/Settings/obsidian + git.md",
-    "Projects/Settings",
+    "Settings/obsidian + git.md",
+    "Settings",
     "Projects/Obslog/개념정리/Rendering/TTFB.md",
     "Projects/Obslog/개념정리/Rendering/SSR.md",
     "Projects/Obslog/개념정리/Rendering/SSG.md",
