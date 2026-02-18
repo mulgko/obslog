@@ -1,7 +1,7 @@
 import React from "react";
 
 const layout = () => {
-  return <div>루트 레이아웃 (html, body, 폰트)</div>;
+  return <div>layout</div>;
 };
 
 export default layout;
