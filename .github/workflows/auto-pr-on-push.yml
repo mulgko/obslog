@@ -1,0 +1,62 @@
+name: Auto PR for CodeRabbit Review
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'content/**'  # content 폴더 변경 시만 실행
+
+jobs:
+  create-pr:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 2  # 최근 2개 커밋 가져오기
+
+      - name: Get commit info
+        id: commit
+        run: |
+          COMMIT_MSG=$(git log -1 --pretty=%B)
+          COMMIT_SHA=$(git rev-parse --short HEAD)
+          echo "msg=$COMMIT_MSG" >> $GITHUB_OUTPUT
+          echo "sha=$COMMIT_SHA" >> $GITHUB_OUTPUT
+
+      - name: Create branch and PR
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          # 이전 커밋으로 임시 브랜치 생성
+          git checkout HEAD~1
+          BRANCH_NAME="content-update-${{ steps.commit.outputs.sha }}"
+          git checkout -b $BRANCH_NAME
+          git push origin $BRANCH_NAME
+
+          # main의 최신 변경사항을 이 브랜치에 적용
+          git cherry-pick main
+
+          # PR 생성
+          gh pr create \
+            --title "📝 Content Update: ${{ steps.commit.outputs.msg }}" \
+            --body "Automatically generated PR for CodeRabbit review.
+
+          **Changes:**
+          - ${{ steps.commit.outputs.msg }}
+
+          **Commit:** ${{ steps.commit.outputs.sha }}
+
+          🤖 This PR will be auto-merged after CodeRabbit review." \
+            --base main \
+            --head $BRANCH_NAME
+
+      - name: Enable auto-merge
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          # PR 번호 가져오기
+          PR_NUMBER=$(gh pr list --head $BRANCH_NAME --json number --jq '.[0].number')
+
+          # Auto-merge 활성화
+          gh pr merge $PR_NUMBER --auto --squash
