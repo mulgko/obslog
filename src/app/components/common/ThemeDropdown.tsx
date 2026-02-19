@@ -6,10 +6,7 @@ import { SunIcon } from "@phosphor-icons/react/dist/ssr";
 const themes = [
   { id: "light", label: "Light" },
   { id: "dark", label: "Dark" },
-  { id: "pastel-blue", label: "Pastel · Blue" },
-  { id: "pastel-pink", label: "Pastel · Pink" },
-  { id: "glass", label: "Glassmorphism · Clear" },
-  { id: "glass-tint", label: "Glassmorphism · Tint" },
+  { id: "glass", label: "Glassmorphism" },
 ] as const;
 
 type ThemeId = (typeof themes)[number]["id"];
@@ -63,15 +60,15 @@ const ThemeDropdown = () => {
       </button>
 
       {open && (
-        <div className="absolute right-0 top-full mt-2 w-44 bg-white border border-neutral-200 rounded-lg shadow-lg py-1 z-50">
+        <div className="absolute right-0 top-full mt-2 w-44 rounded-xl py-1 z-50 dropdown-panel">
           {themes.map(({ id, label }) => (
             <button
               key={id}
               onClick={() => handleSelect(id)}
-              className={`w-full text-left px-4 py-2 text-xs transition-colors hover:bg-neutral-50 cursor-pointer ${
+              className={`w-full text-left px-4 py-2 text-xs transition-colors cursor-pointer ${
                 current === id
-                  ? "text-neutral-900 font-medium"
-                  : "text-neutral-600"
+                  ? "font-medium"
+                  : "opacity-60"
               }`}
             >
               {label}
