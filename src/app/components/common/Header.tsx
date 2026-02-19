@@ -1,16 +1,21 @@
 import React from "react";
 import Link from "next/link";
+import Image from "next/image";
 import {
-  SquaresFourIcon,
+  FoldersIcon,
   MagnifyingGlassIcon,
-  SunIcon,
 } from "@phosphor-icons/react/dist/ssr";
+import ThemeDropdown from "./ThemeDropdown";
 
 const Header = () => {
   return (
     <header className="sticky top-0 z-50 border-b border-neutral-200 bg-white/80 backdrop-blur-sm">
       <div className="max-w-5xl mx-auto px-4 h-14 flex items-center justify-between">
-        <Link href="/" className="font-bold text-lg tracking-tight">
+        <Link
+          href="/"
+          className="flex items-center  font-bold text-lg tracking-tight"
+        >
+          <Image src="/obsidian-icon.svg" alt="Obslog" width={24} height={24} />
           Obslog
         </Link>
 
@@ -28,12 +33,7 @@ const Header = () => {
           >
             Search
           </button>
-          <button
-            aria-label="테마 변경"
-            className="hidden sm:block text-sm text-neutral-600 hover:text-neutral-900 transition-colors cursor-pointer"
-          >
-            Theme
-          </button>
+          <ThemeDropdown />
 
           {/* 모바일: 아이콘 */}
           <Link
@@ -41,19 +41,13 @@ const Header = () => {
             aria-label="시리즈"
             className="sm:hidden text-neutral-600 hover:text-neutral-900 transition-colors"
           >
-            <SquaresFourIcon size={20} weight="light" />
+            <FoldersIcon size={20} weight="bold" />
           </Link>
           <button
             aria-label="검색"
             className="sm:hidden text-neutral-600 hover:text-neutral-900 transition-colors cursor-pointer"
           >
-            <MagnifyingGlassIcon size={20} weight="light" />
-          </button>
-          <button
-            aria-label="테마 변경"
-            className="sm:hidden text-neutral-600 hover:text-neutral-900 transition-colors cursor-pointer"
-          >
-            <SunIcon size={20} weight="light" />
+            <MagnifyingGlassIcon size={20} weight="bold" />
           </button>
         </nav>
       </div>
