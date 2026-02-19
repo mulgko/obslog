@@ -1,7 +1,14 @@
 import React from "react";
+import "./globals.css";
 
-const layout = () => {
-  return <div>루트 레이아웃 (html, body, 폰트)</div>;
-};
-
-export default layout;
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
+  return (
+    <html lang="ko">
+      <body>{children}</body>
+    </html>
+  );
+}
