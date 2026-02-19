@@ -1,0 +1,75 @@
+# yaml-language-server: $schema=https://coderabbit.ai/integrations/schema.v2.json
+
+# CodeRabbit Configuration — obslog (Next.js Blog)
+language: ko
+early_access: true
+
+reviews:
+  profile: "assertive"
+  request_changes_workflow: true
+  high_level_summary: true
+  poem: false
+  review_status: true
+  collapse_walkthrough: false
+
+  path_filters:
+    - "!node_modules/**"
+    - "!.next/**"
+    - "!public/**"
+    - "!**/*.lock"
+    - "!**/*.log"
+
+  path_instructions:
+    - path: "src/app/components/**/*.tsx"
+      instructions: |
+        React 컴포넌트를 리뷰해주세요.
+        - Server Component / Client Component 구분이 적절한지 확인
+        - props 타입 정의 누락 여부
+        - 접근성(aria 속성, 시맨틱 태그) 검토
+        - 불필요한 리렌더링 유발 패턴 체크
+
+    - path: "src/app/**/page.tsx"
+      instructions: |
+        Next.js App Router 페이지를 리뷰해주세요.
+        - 메타데이터(generateMetadata) 누락 여부
+        - 데이터 페칭 방식이 SSR/SSG/ISR 중 적절한지 검토
+        - loading.tsx / error.tsx 처리 여부
+
+    - path: "src/app/**/layout.tsx"
+      instructions: |
+        레이아웃 컴포넌트를 리뷰해주세요.
+        - 불필요하게 Client Component로 선언되어 있지 않은지 확인
+        - 공통 UI 중복 여부
+
+    - path: "src/app/lib/**/*.ts"
+      instructions: |
+        비즈니스 로직 및 유틸리티 함수를 리뷰해주세요.
+        - 순수 함수 원칙 준수 여부
+        - 에러 핸들링 누락 체크
+        - 타입 안정성 검토
+
+    - path: "src/app/api/**/*.ts"
+      instructions: |
+        API Route를 리뷰해주세요.
+        - HTTP 메서드 및 상태 코드 적절성
+        - 입력값 검증 및 에러 처리
+        - 인증/인가 처리 여부
+
+    - path: "**/*.css"
+      instructions: |
+        CSS를 리뷰해주세요.
+        - Tailwind CSS v4 사용 패턴 일관성
+        - CSS 변수(테마 토큰) 활용 여부
+        - 불필요한 중복 스타일 체크
+
+    - path: "**/*.ts"
+      instructions: |
+        TypeScript 파일을 리뷰해주세요.
+        - any 타입 사용 여부
+        - 명시적 반환 타입 누락 체크
+        - 불필요한 타입 단언(as) 사용 여부
+
+chat:
+  auto_reply: true
+
+tone_instructions: "한국어로 간결하고 실용적인 피드백을 제공해주세요. 문제점은 구체적인 수정 방향과 함께 제시해주세요."
