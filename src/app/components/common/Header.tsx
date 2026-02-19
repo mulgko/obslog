@@ -13,9 +13,9 @@ const Header = () => {
       <div className="max-w-5xl mx-auto px-4 h-14 flex items-center justify-between">
         <Link
           href="/"
-          className="flex items-center  font-bold text-lg tracking-tight"
+          className="flex items-center gap-2 font-bold text-lg tracking-tight"
         >
-          <Image src="/obsidian-icon.svg" alt="Obslog" width={24} height={24} />
+          <Image src="/obsidian-icon.svg" alt="Obslog" width={16} height={16} />
           Obslog
         </Link>
 

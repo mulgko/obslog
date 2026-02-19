@@ -17,6 +17,12 @@ const ThemeDropdown = () => {
   const ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
+    // 서버에서 이미 data-theme을 설정했으므로 DOM에서 읽어 상태 동기화
+    const applied = document.documentElement.getAttribute("data-theme") as ThemeId | null;
+    if (applied && themes.some((t) => t.id === applied)) {
+      setCurrent(applied);
+    }
+
     const handleClickOutside = (e: MouseEvent) => {
       if (ref.current && !ref.current.contains(e.target as Node)) {
         setOpen(false);
@@ -37,6 +43,7 @@ const ThemeDropdown = () => {
   const handleSelect = (id: ThemeId) => {
     setCurrent(id);
     document.documentElement.setAttribute("data-theme", id);
+    document.cookie = `theme=${id};path=/;max-age=31536000;SameSite=Lax`;
     setOpen(false);
   };
 
