@@ -1,5 +1,6 @@
 import React from "react";
 import Link from "next/link";
+import Image from "next/image";
 import {
   FoldersIcon,
   MagnifyingGlassIcon,
@@ -10,7 +11,11 @@ const Header = () => {
   return (
     <header className="sticky top-0 z-50 border-b border-neutral-200 bg-white/80 backdrop-blur-sm">
       <div className="max-w-5xl mx-auto px-4 h-14 flex items-center justify-between">
-        <Link href="/" className="font-bold text-lg tracking-tight">
+        <Link
+          href="/"
+          className="flex items-center  font-bold text-lg tracking-tight"
+        >
+          <Image src="/obsidian-icon.svg" alt="Obslog" width={24} height={24} />
           Obslog
         </Link>
 
