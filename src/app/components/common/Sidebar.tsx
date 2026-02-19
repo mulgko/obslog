@@ -17,7 +17,10 @@ const groupTagsByLetter = (tags: string[]): TagGroup[] => {
 
   return Object.entries(groups)
     .sort(([a], [b]) => a.localeCompare(b, "ko"))
-    .map(([letter, items]) => ({ letter, tags: items.sort((a, b) => a.localeCompare(b, "ko")) }));
+    .map(([letter, items]) => ({
+      letter,
+      tags: items.sort((a, b) => a.localeCompare(b, "ko")),
+    }));
 };
 
 const Sidebar = ({ tags = [] }: { tags?: string[] }) => {
@@ -32,7 +35,9 @@ const Sidebar = ({ tags = [] }: { tags?: string[] }) => {
         <div className="space-y-4">
           {groups.map(({ letter, tags: groupTags }) => (
             <div key={letter}>
-              <p className="text-xs font-medium text-neutral-400 mb-1.5">{letter}</p>
+              <p className="text-xs font-medium text-neutral-400 mb-1.5">
+                {letter}
+              </p>
               <div className="flex flex-col gap-1 items-end">
                 {groupTags.map((tag) => (
                   <Link

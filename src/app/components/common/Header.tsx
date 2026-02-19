@@ -1,10 +1,10 @@
 import React from "react";
 import Link from "next/link";
 import {
-  SquaresFourIcon,
+  FoldersIcon,
   MagnifyingGlassIcon,
-  SunIcon,
 } from "@phosphor-icons/react/dist/ssr";
+import ThemeDropdown from "./ThemeDropdown";
 
 const Header = () => {
   return (
@@ -28,12 +28,7 @@ const Header = () => {
           >
             Search
           </button>
-          <button
-            aria-label="테마 변경"
-            className="hidden sm:block text-sm text-neutral-600 hover:text-neutral-900 transition-colors cursor-pointer"
-          >
-            Theme
-          </button>
+          <ThemeDropdown />
 
           {/* 모바일: 아이콘 */}
           <Link
@@ -41,19 +36,13 @@ const Header = () => {
             aria-label="시리즈"
             className="sm:hidden text-neutral-600 hover:text-neutral-900 transition-colors"
           >
-            <SquaresFourIcon size={20} weight="light" />
+            <FoldersIcon size={20} weight="bold" />
           </Link>
           <button
             aria-label="검색"
             className="sm:hidden text-neutral-600 hover:text-neutral-900 transition-colors cursor-pointer"
           >
-            <MagnifyingGlassIcon size={20} weight="light" />
-          </button>
-          <button
-            aria-label="테마 변경"
-            className="sm:hidden text-neutral-600 hover:text-neutral-900 transition-colors cursor-pointer"
-          >
-            <SunIcon size={20} weight="light" />
+            <MagnifyingGlassIcon size={20} weight="bold" />
           </button>
         </nav>
       </div>
