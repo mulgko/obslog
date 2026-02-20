@@ -9,7 +9,7 @@ import ThemeDropdown from "./ThemeDropdown";
 
 const Header = () => {
   return (
-    <header className="sticky top-0 z-50 border-b border-neutral-200 bg-white/80 backdrop-blur-sm">
+    <header className="sticky top-0 z-50 border-b backdrop-blur-sm">
       <div className="max-w-5xl mx-auto px-4 h-14 flex items-center justify-between">
         <Link
           href="/"
