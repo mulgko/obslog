@@ -49,7 +49,14 @@ const ThemeDropdown = () => {
       <button
         onClick={() => setOpen((prev) => !prev)}
         aria-label="테마 변경"
+        // 드롭다운이 열려 있는지 닫혀 있는지 스크린 리더에 알린다.
+        // 스크린 리더는 "테마 변경, 펼침/접힘" 형태로 읽어 현재 상태를 안내한다.
         aria-expanded={open}
+        // 이 버튼을 누르면 menu 역할의 팝업이 열린다는 것을 스크린 리더에 미리 알린다.
+        // 덕분에 사용자가 버튼에 포커스를 두는 순간 "메뉴 팝업" 이라는 힌트를 받을 수 있다.
+        // listbox가 아닌 menu인 이유: listbox는 값 선택(select), menu는 액션 실행 용도.
+        // 테마 변경은 side effect(쿠키 저장, DOM 조작)를 수반하므로 menu가 의미적으로 정확하다.
+        aria-haspopup="menu"
         className="hidden sm:block text-sm text-neutral-600 hover:text-neutral-900 transition-colors cursor-pointer"
       >
         Theme
@@ -59,16 +66,26 @@ const ThemeDropdown = () => {
         onClick={() => setOpen((prev) => !prev)}
         aria-label="테마 변경"
         aria-expanded={open}
+        aria-haspopup="menu"
         className="sm:hidden text-neutral-600 hover:text-neutral-900 transition-colors cursor-pointer"
       >
         <SunIcon size={20} weight="bold" />
       </button>
 
       {open && (
-        <div role="listbox" className="absolute right-0 top-full mt-2 w-44 rounded-xl py-1 z-50 dropdown-panel">
+        // WAI-ARIA: role="menu" + role="menuitem" 조합
+        // role="listbox"는 반드시 role="option" 자식을 가져야 하며, <button>을 자식으로 두면 명세 위반이다.
+        // role="menu"는 <button>(menuitem)을 자식으로 허용하고, 스크린 리더가 올바르게 탐색할 수 있다.
+        <div
+          role="menu"
+          className="absolute right-0 top-full mt-2 w-44 rounded-xl py-1 z-50 dropdown-panel"
+        >
           {THEMES.map(({ id, label }) => (
+            // role="menuitem": 이 버튼이 메뉴 안의 하나의 항목임을 스크린 리더에 전달한다.
+            // 스크린 리더는 화살표 키로 menuitem 간 탐색을 지원하므로 키보드 접근성도 향상된다.
             <button
               key={id}
+              role="menuitem"
               onClick={() => handleSelect(id)}
               className={`w-full text-left px-4 py-2 text-xs transition-colors hover:bg-neutral-50 cursor-pointer ${
                 current === id
