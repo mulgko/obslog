@@ -10,6 +10,7 @@ const Footer = () => {
           target="_blank"
           rel="noopener noreferrer"
           className="underline underline-offset-2 hover:text-neutral-600 transition-colors"
+          aria-label="GitHub (새 탭에서 열림)"
         >
           GitHub
         </a>
