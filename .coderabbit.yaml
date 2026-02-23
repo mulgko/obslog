@@ -18,6 +18,7 @@ reviews:
     - "!public/**"
     - "!**/*.lock"
     - "!**/*.log"
+    - "!**/*.md"
 
   path_instructions:
     - path: "src/app/components/**/*.tsx"
