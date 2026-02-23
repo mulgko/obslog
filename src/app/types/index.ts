@@ -2,12 +2,12 @@
 export interface PostFrontmatter {
   title: string;
   subject: string;
-  reference: string;
+  reference?: string;
   date: string;
-  description: string;
-  tags: string[];
-  series: string;
-  seriesOrder: number;
+  description?: string;
+  tags?: string[];
+  series?: string;
+  seriesOrder?: number;
   published: boolean;
 }
 

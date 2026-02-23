@@ -6,6 +6,16 @@ import { PostMeta, PostFrontmatter, Post } from "../types";
 
 const postDirectory = path.join(process.cwd(), "content", "posts");
 
+function safeSlug(slug: string): string {
+  // path.basename으로 디렉터리 구분자 제거 (../../ 등 경로 탈출 방지)
+  const base = path.basename(slug);
+  // 허용 문자: 영문자·숫자·하이픈·언더스코어만 허용
+  if (!/^[a-zA-Z0-9_-]+$/.test(base)) {
+    throw new Error(`Invalid slug: "${slug}"`);
+  }
+  return base;
+}
+
 // 비즈니스 로직 (순수 함수)
 // 마크다운 CRUD
 
@@ -51,8 +61,8 @@ export function getAllPosts(): PostMeta[] {
 
 // - getPostBySlug(slug)
 export function getPostBySlug(slug: string): Post | null {
-  // 01. slug로 파일 경로 조합
-  const fullPath = path.join(postDirectory, `${slug}.md`);
+  // 01. slug 검증 후 파일 경로 조합
+  const fullPath = path.join(postDirectory, `${safeSlug(slug)}.md`);
 
   // 02. 파일 존재 여부 확인
   if (!fs.existsSync(fullPath)) return null;
@@ -79,7 +89,7 @@ export function getAllTags(): string[] {
   //    → PostMeta[] (이미 만든 함수 재사용)
 
   // 1. 모든 포스트의 tags 배열을 하나로 합치기
-  const allTags = posts.flatMap((post) => post.frontmatter.tags);
+  const allTags = posts.flatMap((post) => post.frontmatter.tags ?? []);
   //    → ["javascript", "react", "javascript", "next.js", ...]
   //       중복 있음
 
@@ -96,7 +106,7 @@ export function getPostsByTag(tag: string): PostMeta[] {
   //    → PostMeta[] (날짜 내림차순 정렬된 전체 포스트)
 
   // 해당 태그를 가진 포스트만 필터링
-  return posts.filter((post) => post.frontmatter.tags.includes(tag));
+  return posts.filter((post) => post.frontmatter.tags?.includes(tag));
   //    → tag가 "react"라면
   //      tags에 "react"가 포함된 포스트만 반환
 }
@@ -110,7 +120,9 @@ export function getAllSeries(): string[] {
   //    → series가 빈 문자열("") 또는 undefined인 포스트 제외
 
   // 2. series 이름만 추출
-  const allSeries = seriesPosts.map((post) => post.frontmatter.series);
+  const allSeries = seriesPosts.map(
+    (post) => post.frontmatter.series as string,
+  );
   //    → ["Next.js 입문", "Next.js 입문", "TypeScript 기초", ...]
   //       중복 있음
 
@@ -120,10 +132,20 @@ export function getAllSeries(): string[] {
   //  tags는 포스트 하나에 여러 개, series는 포스트 하나에 하나라서 flatMap 대신 map을 씁니다.
 }
 // - savePost()
-export function savePost(post: Post): void {
-  // 1. frontmatter를 YAML 문자열로 변환
+export function savePost(post: Post, { overwrite = false } = {}): void {
+  // 1. slug 검증 후 파일 경로 조립
+  const fullPath = path.join(postDirectory, `${safeSlug(post.slug)}.md`);
+  //    → /Users/dk/projects/obslog/content/posts/next-intro.md
+
+  // 2. 중복 파일 체크
+  if (fs.existsSync(fullPath) && !overwrite) {
+    throw new Error(
+      `Post already exists: "${post.slug}". Pass { overwrite: true } to update.`,
+    );
+  }
+
+  // 3. frontmatter를 YAML 문자열로 변환
   const fileContents = matter.stringify(post.content, post.frontmatter);
-  //    → 아래 형태의 문자열 생성
   //    ---
   //    title: "Next.js 입문"
   //    date: "2024-01-01"
@@ -135,19 +157,14 @@ export function savePost(post: Post): void {
   //
   //    본문 내용...
 
-  // 2. 파일 경로 조립
-  const fullPath = path.join(postDirectory, `${post.slug}.md`);
-  //    → /Users/dk/projects/obslog/content/posts/next-intro.md
-
-  // 3. 파일 쓰기
+  // 4. 파일 쓰기
   fs.writeFileSync(fullPath, fileContents, "utf8");
-  //    → 파일이 없으면 생성, 있으면 덮어쓰기
 }
 
 // - deletePost()
 export function deletePost(slug: string): void {
-  // 1. 파일 경로 조립
-  const fullPath = path.join(postDirectory, `${slug}.md`);
+  // 1. slug 검증 후 파일 경로 조립
+  const fullPath = path.join(postDirectory, `${safeSlug(slug)}.md`);
   //    → /Users/dk/projects/obslog/content/posts/next-intro.md
 
   // 2. 파일 존재 여부 확인
