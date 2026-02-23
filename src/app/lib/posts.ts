@@ -6,6 +6,21 @@ import { PostMeta, PostFrontmatter, Post } from "../types";
 
 const postDirectory = path.join(process.cwd(), "content", "posts");
 
+function toPostFrontmatter(data: Record<string, unknown>): PostFrontmatter {
+  return {
+    title: String(data.title ?? ""),
+    subject: String(data.subject ?? ""),
+    reference: String(data.reference ?? ""),
+    date: String(data.date ?? ""),
+    description: String(data.description ?? ""),
+    tags: Array.isArray(data.tags) ? data.tags.map(String) : [],
+    series: String(data.series ?? ""),
+    seriesOrder:
+      typeof data.seriesOrder === "number" ? data.seriesOrder : undefined,
+    published: Boolean(data.published),
+  };
+}
+
 function safeSlug(slug: string): string {
   // path.basename으로 디렉터리 구분자 제거 (../../ 등 경로 탈출 방지)
   const base = path.basename(slug);
@@ -23,7 +38,12 @@ function safeSlug(slug: string): string {
 // - getAllPosts()
 export function getAllPosts(): PostMeta[] {
   // 01. content/posts/ 폴더의 모든 .md 파일 읽기
-  const fileNames = fs.readdirSync(postDirectory);
+  let fileNames: string[];
+  try {
+    fileNames = fs.readdirSync(postDirectory);
+  } catch {
+    return [];
+  }
   // => Obslog.md 파일 여러 개 등
 
   // 02. 각 파일을 PostMeta로 변환
@@ -46,7 +66,7 @@ export function getAllPosts(): PostMeta[] {
       // PostMeta 타입에 맞게 반환
       return {
         slug,
-        frontmatter: data as PostFrontmatter,
+        frontmatter: toPostFrontmatter(data),
       };
     });
 
@@ -78,7 +98,7 @@ export function getPostBySlug(slug: string): Post | null {
   // 05. Post 타입으로 반환
   return {
     slug,
-    frontmatter: data as PostFrontmatter,
+    frontmatter: toPostFrontmatter(data),
     content, // getAllPosts와 달리 content 포함
   };
 }
@@ -158,7 +178,13 @@ export function savePost(post: Post, { overwrite = false } = {}): void {
   //    본문 내용...
 
   // 4. 파일 쓰기
-  fs.writeFileSync(fullPath, fileContents, "utf8");
+  try {
+    fs.writeFileSync(fullPath, fileContents, "utf8");
+  } catch (err) {
+    throw new Error(
+      `Failed to write post "${post.slug}": ${err instanceof Error ? err.message : err}`,
+    );
+  }
 }
 
 // - deletePost()
