@@ -15,9 +15,11 @@ export interface PostFrontmatter {
 export interface PostMeta {
   slug: string;
   frontmatter: PostFrontmatter;
+  thumbnail: string | null;
 }
 
 // 포스트 상세 페이지에서 사용 가능 (본문 포함)
 export interface Post extends PostMeta {
   content: string;
+  thumbnail: string | null;
 }

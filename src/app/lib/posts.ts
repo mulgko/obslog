@@ -60,13 +60,14 @@ export function getAllPosts(): PostMeta[] {
       const fileContents = fs.readFileSync(fullPath, "utf8");
 
       // frontmatter 파싱
-      const { data } = matter(fileContents);
+      const { data, content } = matter(fileContents);
       // => { title: "...", date: "26-01-01", tags: [...], ...}
 
       // PostMeta 타입에 맞게 반환
       return {
         slug,
         frontmatter: toPostFrontmatter(data),
+        thumbnail: extractFirstImage(content),
       };
     });
 
@@ -100,6 +101,7 @@ export function getPostBySlug(slug: string): Post | null {
     slug,
     frontmatter: toPostFrontmatter(data),
     content, // getAllPosts와 달리 content 포함
+    thumbnail: extractFirstImage(content),
   };
 }
 
@@ -199,4 +201,11 @@ export function deletePost(slug: string): void {
 
   // 3. 파일 삭제 Unix 시스템에서 파일 삭제를 unlink라고 부르는 관습에서 왔습니다.
   fs.unlinkSync(fullPath);
+}
+
+// lib/posts.ts — 본문 첫 이미지 추출
+function extractFirstImage(content: string): string | null {
+  // 마크다운 이미지 문법: ![alt](url)
+  const match = content.match(/!\[.*?\]\((.*?)\)/);
+  return match ? match[1] : null;
 }
