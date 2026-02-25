@@ -209,3 +209,21 @@ function extractFirstImage(content: string): string | null {
   const match = content.match(/!\[.*?\]\((.*?)\)/);
   return match ? match[1] : null;
 }
+
+export function getPaginatedPosts(page: number, tags?: string[], pageSize = 4) {
+  const allPosts = getAllPosts();
+  let filteredPosts = allPosts;
+
+  if (tags && tags.length > 0) {
+    filteredPosts = filteredPosts.filter((post) => {
+      return post.frontmatter.tags?.some((tag) => tags.includes(tag));
+    });
+  }
+
+  const totalPages = Math.ceil(filteredPosts.length / pageSize);
+  const start = (page - 1) * pageSize;
+  const end = start + pageSize;
+  const posts = filteredPosts.slice(start, end);
+
+  return { posts, totalPages, currentPage: page };
+}
