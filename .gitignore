@@ -46,3 +46,6 @@ next-env.d.ts
 .obsidian/workspace
 .DS_Store
 Thumbs.db
+
+# claude
+CLAUDE.md
