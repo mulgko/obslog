@@ -27,7 +27,7 @@ const Sidebar = ({ tags = [] }: { tags?: string[] }) => {
   const groups = groupTagsByLetter(tags);
 
   return (
-    <aside className="space-y-5 text-right">
+    <aside className="space-y-5">
       <h2 className="font-semibold text-sm text-neutral-900">Tags</h2>
       {groups.length === 0 ? (
         <p className="text-xs text-neutral-400">태그가 없습니다.</p>
@@ -38,7 +38,7 @@ const Sidebar = ({ tags = [] }: { tags?: string[] }) => {
               <p className="text-xs font-medium text-neutral-400 mb-1.5">
                 {letter}
               </p>
-              <div className="flex flex-col gap-1 items-end">
+              <div className="flex flex-col gap-1">
                 {groupTags.map((tag) => (
                   <Link
                     key={tag}

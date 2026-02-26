@@ -5,7 +5,7 @@ reference: ""
 date: "2026-02-12 15:26"
 description: "앱 라우터와 페이지 라우터의 차이"
 tags:
-  - "#router"
+  - "router"
   - appRouter
   - pageRouter
   - component
