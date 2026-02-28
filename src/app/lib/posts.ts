@@ -210,7 +210,11 @@ function extractFirstImage(content: string): string | null {
   return match ? match[1] : null;
 }
 
-export function getPaginatedPosts(page: number, tags?: string[], pageSize = 4) {
+export function getPaginatedPosts(
+  page: number,
+  pageSize: number,
+  tags?: string[],
+) {
   const allPosts = getAllPosts();
   let filteredPosts = allPosts;
 
