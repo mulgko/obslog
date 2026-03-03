@@ -6,17 +6,19 @@ import { useSearchParams, useRouter } from "next/navigation";
 const TagFilter = ({ tag }: { tag: string }) => {
   const searchParams = useSearchParams();
   const router = useRouter();
+  const tags = searchParams.get("tag")?.split(",").filter(Boolean) || [];
 
-  const checked = searchParams.get("tag")?.split(",").includes(tag);
+  const checked = tags.includes(tag);
 
   const onChange = () => {
-    const tags = searchParams.get("tag")?.split(",") || [];
     if (checked) {
       tags.splice(tags.indexOf(tag), 1);
     } else {
       tags.push(tag);
     }
-    router.push(`/tags?tag=${tags.join(",")}`);
+    const query = tags.length > 0 ? `?tag=${tags.join(",")}` : "";
+
+    router.push(`/tags${query}`);
   };
 
   return (
