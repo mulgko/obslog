@@ -3,9 +3,10 @@ import { Metadata } from "next";
 import PostCard from "../components/common/PostCard";
 import { getPaginatedPosts } from "../lib/posts";
 import Pagination from "../components/common/Pagination";
+import { siteConfig } from "../lib/config";
 
 export const metadata: Metadata = {
-  title: "Home | Obslog",
+  title: `Home | ${siteConfig.siteName}`,
   description: "blog main page",
 };
 
@@ -17,9 +18,11 @@ const page = async ({
   const resolvedSearchParams = await searchParams;
 
   const currentPage = Number(resolvedSearchParams.page) || 1;
-  console.log("currnetPage:", currentPage);
 
-  const paginatedPosts = getPaginatedPosts(currentPage, 4);
+  const paginatedPosts = getPaginatedPosts(
+    currentPage,
+    siteConfig.postsPerPage,
+  );
 
   return (
     <section className="border border-amber-400">

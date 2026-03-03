@@ -2,6 +2,7 @@ import React from "react";
 import Header from "../components/common/Header";
 import Footer from "../components/common/Footer";
 import Sidebar from "../components/common/Sidebar";
+import { siteConfig } from "../lib/config";
 
 const layout = ({ children }: { children: React.ReactNode }) => {
   return (
@@ -10,7 +11,7 @@ const layout = ({ children }: { children: React.ReactNode }) => {
       <div className="flex-1 max-w-5xl mx-auto px-4 w-full py-12 flex gap-10">
         <main className="flex-1 min-w-0">{children}</main>
         <div className="w-[18%] shrink-0 hidden lg:block border border-amber-400">
-          <Sidebar />
+          <Sidebar tags={siteConfig.sidebarTags} />
         </div>
       </div>
       <Footer />
