@@ -7,10 +7,10 @@ const TagFilter = ({ tag }: { tag: string }) => {
   const searchParams = useSearchParams();
   const router = useRouter();
 
-  const checked = searchParams.getAll("tag").includes(tag);
+  const checked = searchParams.get("tag")?.split(",").includes(tag);
 
   const onChange = () => {
-    const tags = searchParams.getAll("tag");
+    const tags = searchParams.get("tag")?.split(",") || [];
     if (checked) {
       tags.splice(tags.indexOf(tag), 1);
     } else {
