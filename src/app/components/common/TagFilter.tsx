@@ -18,11 +18,11 @@ const TagFilter = ({ tag }: { tag: string }) => {
     }
     const query = tags.length > 0 ? `?tag=${tags.join(",")}` : "";
 
-    router.push(`/tags${query}`);
+    router.push(`/${query}`);
   };
 
   return (
-    <div className="flex items-center gap-1 text-xs text-neutral-600 hover:text-neutral-900 transition-colors">
+    <div className="flex items-center gap-1 text-xs text-neutral-600 hover:text-neutral-900 transition-colors capitalize">
       <input
         type="checkbox"
         value={tag}

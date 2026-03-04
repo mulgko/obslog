@@ -13,7 +13,7 @@ export const metadata: Metadata = {
 const page = async ({
   searchParams,
 }: {
-  searchParams: Promise<{ page?: string }>;
+  searchParams: Promise<{ page?: string; tag?: string }>;
 }) => {
   const resolvedSearchParams = await searchParams;
 
@@ -22,6 +22,7 @@ const page = async ({
   const paginatedPosts = getPaginatedPosts(
     currentPage,
     siteConfig.postsPerPage,
+    resolvedSearchParams.tag?.split(",").filter(Boolean) || [],
   );
 
   return (
