@@ -23,7 +23,7 @@ const TagFilter = ({ tag }: { tag: string }) => {
 
   return (
     <li className="flex items-center self-stretch w-full">
-      <label className="flex items-center gap-2 cursor-pointer">
+      <label className="flex items-center gap-2 cursor-pointer w-full rounded-md px-1 transition-colors tag-filter-label">
         <input
           type="checkbox"
           value={tag}
@@ -61,7 +61,10 @@ const TagFilter = ({ tag }: { tag: string }) => {
           )}
         </span>
         <span
-          className={`text-sm font-bold capitalize ${checked ? "text-[#141414]" : "text-[#5e5e5e]"}`}
+          className="text-sm font-bold capitalize"
+          style={{
+            color: checked ? "var(--color-text)" : "var(--color-text-muted)",
+          }}
         >
           {tag}
         </span>
