@@ -3,7 +3,7 @@ title: Some
 subject: ""
 reference: ""
 date: 2026-02-25 16:04
-description: ""
+description: "배열 요소 중 하나라도 조건을 만족하면 true를 반환하는 .some()과, 모든 요소가 조건을 만족해야 true를 반환하는 .every() 메서드를 코드 예시로 비교합니다."
 tags:
   - frontend
   - some
@@ -11,6 +11,7 @@ tags:
 series: ""
 seriesOrder:
 published: false
+thumbnail: "/images/Gemini_Generated_Image_z2npcaz2npcaz2np 1.jpg"
 ---
 
 # Some

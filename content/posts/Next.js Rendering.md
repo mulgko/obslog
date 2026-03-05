@@ -3,10 +3,10 @@ title: "Next.js Rendering"
 subject: "[[Rendering]]"
 reference: ""
 date: "2026-02-12 16:04"
-description: "Next.js의 여러가지 렌더링 방식"
+description: "Next.js의 세 가지 렌더링 방식인 SSG·SSR·CSR을 동작 원리, 적합한 사용 시나리오, 장단점을 비교하며 정리합니다. 블로그, 실시간 데이터, 인터랙티브 UI 등 상황에 따른 선택 기준을 제시합니다."
 tags:
-  - rendering
   - next
+  - rendering
   - ssg
   - ssr
   - csr
@@ -14,6 +14,7 @@ tags:
 series: ""
 seriesOrder:
 published: false
+thumbnail: "/images/Gemini_Generated_Image_8hlkfs8hlkfs8hlk.jpeg"
 ---
 
 

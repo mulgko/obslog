@@ -3,10 +3,10 @@ title: Const Assertion
 subject: "[[Frontend]]"
 reference: ""
 date: 2026-02-20 09:19
-description: ""
+description: "TypeScript의 as const 키워드로 배열과 객체를 완전한 읽기 전용으로 잠그고, 값을 리터럴 타입으로 고정하는 방법을 다룹니다. typeof와 조합해 배열에서 유니온 타입을 자동 추출하는 실용적인 패턴까지 소개합니다."
 tags:
-  - const
   - ts
+  - const
   - const-assertion
   - readonly
   - 개념
@@ -14,6 +14,7 @@ tags:
 series: ""
 seriesOrder:
 published: false
+thumbnail: "/images/Gemini_Generated_Image_8hlkfs8hlkfs8hlk.jpeg"
 ---
 
 # Const Assertion

@@ -3,16 +3,17 @@ title: "CSR"
 subject: "[[Rendering]]"
 reference: ""
 date: "2026-02-12 15:57"
-description: "재료만 보내고 요리는 사용자가 하기"
+description: "서버는 빈 HTML 뼈대와 JS 파일만 브라우저로 보내고, 브라우저가 직접 화면을 그리는 방식입니다. 첫 로딩은 느릴 수 있지만 이후 페이지 이동이 부드럽고 서버 부담이 적으며, Next.js의 Hydration 과정과 CSR의 장단점을 함께 다룹니다."
 tags:
+  - frontend
   - rendering
   - csr
-  - next
   - 개념
   - hydration
 series: ""
 seriesOrder:
 published: false
+thumbnail: "/images/Gemini_Generated_Image_z2npcaz2npcaz2np 1.jpg"
 ---
 
 - 동작원리: 서버는 텅 빈 HTML 뼈대(

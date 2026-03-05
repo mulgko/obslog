@@ -3,11 +3,11 @@ title: Server Component vs Client Component
 subject: "[[Frontend]]"
 reference:
 date: 2026-02-12 15:49
-description: "null"
+description: "Next.js App Router에서 기본인 서버 컴포넌트와 use client를 선언하는 클라이언트 컴포넌트의 실행 위치, Hook·이벤트 리스너 사용 가능 여부, 성능 차이를 비교합니다. 두 컴포넌트를 효과적으로 섞어 쓰는 전략도 함께 다룹니다."
 tags:
+  - next
   - serverComponent
   - clientComponent
-  - next
   - useState
   - useEffect
   - onClick
@@ -16,6 +16,7 @@ tags:
 series: ""
 seriesOrder:
 published: false
+thumbnail: "/images/Gemini_Generated_Image_og9xccog9xccog9x 1.jpg"
 ---
 
 |            | Server                        | Client                  |

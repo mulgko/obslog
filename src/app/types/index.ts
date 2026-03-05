@@ -9,6 +9,7 @@ export interface PostFrontmatter {
   series?: string;
   seriesOrder?: number;
   published: boolean;
+  thumbnail?: string;
 }
 
 // 포스트 목록에서 사용 가능 (본문없이 메타데이터만)

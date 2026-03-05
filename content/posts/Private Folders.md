@@ -3,17 +3,18 @@ title: Private Folders
 subject: "[[Frontend|Front]]"
 reference: ""
 date: 2026-02-18 16:22
-description: ""
+description: "Next.js App Router에서 폴더 이름 앞에 언더스코어(_)를 붙여 URL 라우팅에서 제외시키는 Private Folder 기능을 설명합니다. 라우트 전용 파일과 내부 컴포넌트를 같은 위치에 두는 Co-location 패턴을 지원하는 데 어떻게 활용하는지 다룹니다."
 tags:
+  - next
   - folder
   - private
-  - next
   - co-location
   - routing
   - 개념
 series: ""
 seriesOrder:
 published: false
+thumbnail: "/images/Gemini_Generated_Image_z2npcaz2npcaz2np 1.jpg"
 ---
 
 # Private Folders

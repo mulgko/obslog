@@ -3,7 +3,7 @@ title: Frontend design pattern
 subject: "[[Frontend]]"
 reference: ""
 date: 2026-02-12 15:42
-description: 프론트엔드 디자인 패턴 가이드
+description: "MVC·MVP·MVVM 같은 전통적 아키텍처부터 Flux·Atomic State 같은 현대 상태 관리 패턴, React Query·GraphQL 같은 서버 상태 관리까지 프론트엔드 디자인 패턴의 흐름을 한눈에 정리합니다."
 tags:
   - design
   - pattern
@@ -12,6 +12,7 @@ tags:
 series: ""
 seriesOrder:
 published: false
+thumbnail: "/images/Gemini_Generated_Image_53c7g753c7g753c7 (1) 1.jpg"
 ---
 
 # 디자인 패턴

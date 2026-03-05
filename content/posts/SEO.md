@@ -3,13 +3,15 @@ title: SEO
 subject: "[[Frontend|Front]]"
 reference: ""
 date: 2026-02-23 16:21
-description: ""
+description: "Next.js 블로그의 SEO를 단계적으로 개선하는 전략을 다룹니다. 글로벌 메타데이터 설정과 포스트별 generateMetadata 적용을 시작으로, sitemap.ts·robots.ts 추가, JSON-LD 구조화 데이터, Google Search Console 등록까지 우선순위별 로드맵을 제시합니다."
 tags:
+  - next
   - seo
   - 개념
 series: ""
 seriesOrder:
 published: false
+thumbnail: "/images/Gemini_Generated_Image_8hlkfs8hlkfs8hlk.jpeg"
 ---
 
 # obslog SEO 전략 가이드

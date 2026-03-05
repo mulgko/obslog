@@ -3,17 +3,18 @@ title: "App Router vs Page Router"
 subject: "[[Dev Note]]"
 reference: ""
 date: "2026-02-12 15:26"
-description: "앱 라우터와 페이지 라우터의 차이"
+description: "Next.js의 두 가지 라우팅 방식인 App Router와 Page Router를 비교합니다. 폴더 구조, 기본 컴포넌트 방식, 데이터 패칭 방법의 차이를 살펴보고, 왜 App Router가 점점 표준이 되어가는지 알아봅니다."
 tags:
-  - "router"
+  - next
+  - router
   - appRouter
   - pageRouter
   - component
-  - next
   - 개념
 series: ""
 seriesOrder:
 published: true
+thumbnail: "/images/Gemini_Generated_Image_53c7g753c7g753c7 (1) 1.jpg"
 ---
 
 |               | AppRouter              | PageRouter                    |

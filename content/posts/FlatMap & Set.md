@@ -3,8 +3,9 @@ title: FlatMap
 subject: "[[Frontend]]"
 reference: "[[Phase 3 (마크다운 포스트)]]"
 date: 2026-02-23 14:04
-description: ""
+description: "JavaScript의 flatMap()으로 중첩 배열을 한 번에 변환·평탄화하고, Set으로 중복 값을 제거하는 방법을 다룹니다. 두 기능을 조합해 여러 포스트에 흩어진 태그를 중복 없이 추출하는 실전 패턴도 함께 소개합니다."
 tags:
+  - frontend
   - flatMap
   - 개념
   - 2차원배열
@@ -14,6 +15,7 @@ tags:
 series: ""
 seriesOrder:
 published: false
+thumbnail: "/images/Gemini_Generated_Image_53c7g753c7g753c7 (1) 1.jpg"
 ---
 
 # JavaScript Utility: flatMap & Set

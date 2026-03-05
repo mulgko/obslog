@@ -3,8 +3,9 @@ title: Modern Frontend Terms
 subject: "[[Frontend]]"
 reference: "[[Component Folder Pattern]]"
 date: 2026-02-13 11:58
-description: 현대 프론트엔드 개발의 핵심 개념 (Barrel, Monorepo, Co-location)
+description: "Barrel Pattern으로 모듈을 단일 진입점으로 묶는 방법, Turborepo로 여러 프로젝트를 하나의 저장소에서 관리하는 Monorepo 전략, 관련 파일을 같은 위치에 두는 Co-location 원칙까지 현대 프론트엔드 핵심 용어를 정리합니다."
 tags:
+  - frontend
   - barrel-pattern
   - monorepo
   - turborepo
@@ -13,6 +14,7 @@ tags:
 series: ""
 seriesOrder:
 published: false
+thumbnail: "/images/Gemini_Generated_Image_io8wxlio8wxlio8w 1.jpg"
 ---
 
 # 현대 프론트엔드 핵심 용어 정리

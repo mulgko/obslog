@@ -18,6 +18,7 @@ function toPostFrontmatter(data: Record<string, unknown>): PostFrontmatter {
     seriesOrder:
       typeof data.seriesOrder === "number" ? data.seriesOrder : undefined,
     published: Boolean(data.published),
+    thumbnail: typeof data.thumbnail === "string" ? data.thumbnail : undefined,
   };
 }
 
@@ -67,7 +68,7 @@ export function getAllPosts(): PostMeta[] {
       return {
         slug,
         frontmatter: toPostFrontmatter(data),
-        thumbnail: extractFirstImage(content),
+        thumbnail: toPostFrontmatter(data).thumbnail ?? null,
       };
     });
 
@@ -101,7 +102,7 @@ export function getPostBySlug(slug: string): Post | null {
     slug,
     frontmatter: toPostFrontmatter(data),
     content, // getAllPosts와 달리 content 포함
-    thumbnail: extractFirstImage(content),
+    thumbnail: toPostFrontmatter(data).thumbnail ?? null,
   };
 }
 
@@ -203,12 +204,11 @@ export function deletePost(slug: string): void {
   fs.unlinkSync(fullPath);
 }
 
-// lib/posts.ts — 본문 첫 이미지 추출
-function extractFirstImage(content: string): string | null {
-  // 마크다운 이미지 문법: ![alt](url)
-  const match = content.match(/!\[.*?\]\((.*?)\)/);
-  return match ? match[1] : null;
-}
+// lib/posts.ts — 본문 첫 이미지 추출 (frontmatter thumbnail 필드로 대체)
+// function extractFirstImage(content: string): string | null {
+//   const match = content.match(/!\[.*?\]\((.*?)\)/);
+//   return match ? match[1] : null;
+// }
 
 export function getPaginatedPosts(
   page: number,

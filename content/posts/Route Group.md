@@ -3,12 +3,14 @@ title: Route Group
 subject: "[[Frontend]]"
 reference: "[[Phase 1 (프로젝트 생성 & 구조설계)|Phase 1 프로젝트 생성 & 구조설계]]"
 date: 2026-02-12 15:47
-description: Route Group에 대해서
+description: "Next.js에서 괄호로 폴더를 감싸 URL에 영향을 주지 않으면서 레이아웃을 분리하는 Route Group 기능을 소개합니다. 블로그와 어드민처럼 서로 다른 레이아웃이 필요한 영역을 하나의 앱 디렉토리 안에서 깔끔하게 구분하는 방법을 다룹니다."
 tags:
+  - next
   - 개념
 series: ""
 seriesOrder:
 published: false
+thumbnail: "/images/Gemini_Generated_Image_8hlkfs8hlkfs8hlk.jpeg"
 ---
 Route Group? (blog), (admin) 
 

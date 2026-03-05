@@ -3,13 +3,14 @@ title: Pagination
 subject: ""
 reference: ""
 date: 2026-02-25 16:43
-description: ""
+description: "페이지네이션 구현 시 헷갈리기 쉬운 start·end 계산 로직과 Math.ceil을 사용한 총 페이지 수 계산 방법을 코드와 표로 정리합니다. 태그 필터링과 결합해 원하는 포스트만 페이지 단위로 잘라내는 전체 구현을 다룹니다."
 tags:
   - frontend
   - pagination
 series: ""
 seriesOrder:
 published: false
+thumbnail: "/images/Gemini_Generated_Image_d2bit1d2bit1d2bi 1.jpg"
 ---
 
 # Pagination
