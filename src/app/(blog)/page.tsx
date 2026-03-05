@@ -26,9 +26,10 @@ const page = async ({
   );
 
   return (
-    <section className="">
+    <section>
       <h1 className="text-[24px] font-bold mb-18">모든 글 모아보기</h1>
-      <ul className="flex flex-col gap-10">
+
+      <ul className="flex flex-col gap-10 mb-11">
         {paginatedPosts.posts.map((post) => (
           <li key={post.slug} className="">
             <PostCard post={post} />

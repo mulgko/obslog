@@ -6,7 +6,6 @@ import { useRouter } from "next/navigation";
 const Pagination = ({ totalPages }: { totalPages: number }) => {
   const router = useRouter();
   const searchParams = useSearchParams();
-
   const pathname = usePathname();
   const currentPage = Number(searchParams.get("page")) || 1;
 
@@ -17,26 +16,67 @@ const Pagination = ({ totalPages }: { totalPages: number }) => {
   const start = Math.max(1, currentPage - 2);
   const end = Math.min(totalPages, start + 4);
   const pages = Array.from({ length: end - start + 1 }, (_, i) => start + i);
+
   return (
-    <>
+    <nav
+      className="inline-flex items-center gap-2"
+      role="navigation"
+      aria-label="Pagination"
+    >
       <button
         disabled={currentPage === 1}
         onClick={() => handlePageChange(currentPage - 1)}
+        className="inline-flex items-center justify-center px-3 py-2 rounded-md disabled:opacity-50 hover:bg-gray-100 transition-colors cursor-pointer disabled:cursor-not-allowed"
+        aria-label="Previous page"
       >
-        Previous
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+          <path
+            d="M10 12L6 8L10 4"
+            stroke="currentColor"
+            strokeWidth="1.5"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+        </svg>
       </button>
-      {pages.map((page) => (
-        <button key={page} onClick={() => handlePageChange(page)}>
-          {page}
-        </button>
-      ))}
+
+      <div className="inline-flex items-center gap-2">
+        {pages.map((page) => (
+          <button
+            key={page}
+            onClick={() => handlePageChange(page)}
+            className={`inline-flex items-center justify-center px-3 py-2 rounded-md transition-colors cursor-pointer hover:bg-gray-100 ${
+              currentPage === page ? "bg-[#4d3c65] hover:bg-[#4d3c65]" : ""
+            }`}
+            aria-label={`Page ${page}`}
+            aria-current={currentPage === page ? "page" : undefined}
+          >
+            <span
+              className={`text-sm font-medium ${currentPage === page ? "text-white" : "text-gray-700"}`}
+            >
+              {page}
+            </span>
+          </button>
+        ))}
+      </div>
+
       <button
         disabled={currentPage === totalPages}
         onClick={() => handlePageChange(currentPage + 1)}
+        className="inline-flex items-center justify-center px-3 py-2 rounded-md disabled:opacity-50 hover:bg-gray-100 transition-colors cursor-pointer disabled:cursor-not-allowed"
+        aria-label="Next page"
       >
-        Next
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+          <path
+            d="M6 4L10 8L6 12"
+            stroke="currentColor"
+            strokeWidth="1.5"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+        </svg>
       </button>
-    </>
+    </nav>
   );
 };
 

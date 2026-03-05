@@ -30,7 +30,7 @@ const PostCard = ({ post }: { post: PostMeta }) => {
         <div className="flex  justify-between h-35">
           <div className="w-110 flex flex-col justify-between">
             <div className="flex flex-col">
-              <div className="flex capitalize mb-1 text-[14px] font-bold leading-[17px] text-[#6D496F]">
+              <div className="flex gap-2 capitalize mb-1 text-[14px] font-bold leading-[17px] text-[#6D496F]">
                 {tags.map((tag) => (
                   <span key={tag}>{tag}</span>
                 ))}
