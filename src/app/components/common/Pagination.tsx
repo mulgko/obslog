@@ -25,6 +25,28 @@ const Pagination = ({ totalPages }: { totalPages: number }) => {
     >
       <button
         disabled={currentPage === 1}
+        onClick={() => handlePageChange(1)}
+        className="inline-flex items-center justify-center px-3 py-2 rounded-md disabled:opacity-50 hover:bg-gray-100 transition-colors cursor-pointer disabled:cursor-not-allowed"
+        aria-label="First page"
+      >
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+          <path
+            d="M4 4L4 12"
+            stroke="currentColor"
+            strokeWidth="1.5"
+            strokeLinecap="round"
+          />
+          <path
+            d="M12 12L8 8L12 4"
+            stroke="currentColor"
+            strokeWidth="1.5"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+        </svg>
+      </button>
+      <button
+        disabled={currentPage === 1}
         onClick={() => handlePageChange(currentPage - 1)}
         className="inline-flex items-center justify-center px-3 py-2 rounded-md disabled:opacity-50 hover:bg-gray-100 transition-colors cursor-pointer disabled:cursor-not-allowed"
         aria-label="Previous page"
@@ -69,6 +91,28 @@ const Pagination = ({ totalPages }: { totalPages: number }) => {
         <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
           <path
             d="M6 4L10 8L6 12"
+            stroke="currentColor"
+            strokeWidth="1.5"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+        </svg>
+      </button>
+      <button
+        disabled={currentPage === totalPages}
+        onClick={() => handlePageChange(totalPages)}
+        className="inline-flex items-center justify-center px-3 py-2 rounded-md disabled:opacity-50 hover:bg-gray-100 transition-colors cursor-pointer disabled:cursor-not-allowed"
+        aria-label="Last page"
+      >
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+          <path
+            d="M12 4L12 12"
+            stroke="currentColor"
+            strokeWidth="1.5"
+            strokeLinecap="round"
+          />
+          <path
+            d="M4 4L8 8L4 12"
             stroke="currentColor"
             strokeWidth="1.5"
             strokeLinecap="round"
