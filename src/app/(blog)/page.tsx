@@ -38,7 +38,9 @@ const page = async ({
           ))}
         </ul>
       </div>
-      <Pagination totalPages={paginatedPosts.totalPages} />
+      <div className="flex justify-center w-full">
+        <Pagination totalPages={paginatedPosts.totalPages} />
+      </div>
     </section>
   );
 };
