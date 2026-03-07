@@ -17,6 +17,8 @@ const Pagination = ({ totalPages }: { totalPages: number }) => {
   const end = Math.min(totalPages, start + 4);
   const pages = Array.from({ length: end - start + 1 }, (_, i) => start + i);
 
+  if (totalPages <= 1) return null;
+
   return (
     <nav
       className="inline-flex items-center gap-2"
