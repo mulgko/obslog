@@ -26,8 +26,8 @@ const page = async ({
   );
 
   return (
-    <section className="flex flex-col justify-between h-[889px] ">
-      <div>
+    <section className="flex flex-col md:justify-between h-[1500px]  md:h-[889px] ">
+      <div className="md:mb-0 mb-10">
         <h1 className="text-[24px] font-bold mb-18">모든 글 모아보기</h1>
 
         <ul className="flex flex-col gap-10 ">
@@ -38,7 +38,7 @@ const page = async ({
           ))}
         </ul>
       </div>
-      <div className="flex justify-center w-full">
+      <div className="flex justify-start  w-full">
         <Pagination totalPages={paginatedPosts.totalPages} />
       </div>
     </section>

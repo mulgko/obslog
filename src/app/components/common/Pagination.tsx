@@ -21,14 +21,14 @@ const Pagination = ({ totalPages }: { totalPages: number }) => {
 
   return (
     <nav
-      className="inline-flex items-center gap-2"
+      className="inline-flex items-center gap-1 md:gap-2"
       role="navigation"
       aria-label="Pagination"
     >
       <button
         disabled={currentPage === 1}
         onClick={() => handlePageChange(1)}
-        className="inline-flex items-center justify-center px-3 py-2 rounded-md disabled:opacity-50 hover:bg-gray-100 transition-colors cursor-pointer disabled:cursor-not-allowed"
+        className="inline-flex items-center justify-center px-2 py-1  md:px-3 md:py-2 rounded-md disabled:opacity-50 hover:bg-gray-100 transition-colors cursor-pointer disabled:cursor-not-allowed"
         aria-label="First page"
       >
         <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
@@ -50,7 +50,7 @@ const Pagination = ({ totalPages }: { totalPages: number }) => {
       <button
         disabled={currentPage === 1}
         onClick={() => handlePageChange(currentPage - 1)}
-        className="inline-flex items-center justify-center px-3 py-2 rounded-md disabled:opacity-50 hover:bg-gray-100 transition-colors cursor-pointer disabled:cursor-not-allowed"
+        className="inline-flex items-center justify-center px-2 py-1 md:px-3 md:py-2 rounded-md disabled:opacity-50 hover:bg-gray-100 transition-colors cursor-pointer disabled:cursor-not-allowed"
         aria-label="Previous page"
       >
         <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
@@ -87,7 +87,7 @@ const Pagination = ({ totalPages }: { totalPages: number }) => {
       <button
         disabled={currentPage === totalPages}
         onClick={() => handlePageChange(currentPage + 1)}
-        className="inline-flex items-center justify-center px-3 py-2 rounded-md disabled:opacity-50 hover:bg-gray-100 transition-colors cursor-pointer disabled:cursor-not-allowed"
+        className="inline-flex items-center justify-center px-2 py-1  md:px-3 md:py-2 rounded-md disabled:opacity-50 hover:bg-gray-100 transition-colors cursor-pointer disabled:cursor-not-allowed"
         aria-label="Next page"
       >
         <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
@@ -103,7 +103,7 @@ const Pagination = ({ totalPages }: { totalPages: number }) => {
       <button
         disabled={currentPage === totalPages}
         onClick={() => handlePageChange(totalPages)}
-        className="inline-flex items-center justify-center px-3 py-2 rounded-md disabled:opacity-50 hover:bg-gray-100 transition-colors cursor-pointer disabled:cursor-not-allowed"
+        className="inline-flex items-center justify-center px-2 py-1 md:px-3 md:py-2 rounded-md disabled:opacity-50 hover:bg-gray-100 transition-colors cursor-pointer disabled:cursor-not-allowed"
         aria-label="Last page"
       >
         <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
