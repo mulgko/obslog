@@ -10,7 +10,10 @@ const Pagination = ({ totalPages }: { totalPages: number }) => {
   const currentPage = Number(searchParams.get("page")) || 1;
 
   const handlePageChange = (page: number) => {
-    router.push(`${pathname}?page=${page}`);
+    const clamped = Math.max(1, Math.min(page, totalPages));
+    const params = new URLSearchParams(searchParams.toString());
+    params.set("page", String(clamped));
+    router.push(`${pathname}?${params.toString()}`);
   };
 
   const start = Math.max(1, currentPage - 2);
@@ -26,6 +29,7 @@ const Pagination = ({ totalPages }: { totalPages: number }) => {
       aria-label="Pagination"
     >
       <button
+        type="button"
         disabled={currentPage === 1}
         onClick={() => handlePageChange(1)}
         className="inline-flex items-center justify-center px-2 py-1  md:px-3 md:py-2 rounded-md disabled:opacity-50 hover:bg-gray-100 transition-colors cursor-pointer disabled:cursor-not-allowed"
@@ -48,6 +52,7 @@ const Pagination = ({ totalPages }: { totalPages: number }) => {
         </svg>
       </button>
       <button
+        type="button"
         disabled={currentPage === 1}
         onClick={() => handlePageChange(currentPage - 1)}
         className="inline-flex items-center justify-center px-2 py-1 md:px-3 md:py-2 rounded-md disabled:opacity-50 hover:bg-gray-100 transition-colors cursor-pointer disabled:cursor-not-allowed"
@@ -67,6 +72,7 @@ const Pagination = ({ totalPages }: { totalPages: number }) => {
       <div className="inline-flex items-center gap-2">
         {pages.map((page) => (
           <button
+            type="button"
             key={page}
             onClick={() => handlePageChange(page)}
             className={`inline-flex items-center justify-center px-3 py-2 rounded-md transition-colors cursor-pointer hover:bg-gray-100 ${
@@ -85,6 +91,7 @@ const Pagination = ({ totalPages }: { totalPages: number }) => {
       </div>
 
       <button
+        type="button"
         disabled={currentPage === totalPages}
         onClick={() => handlePageChange(currentPage + 1)}
         className="inline-flex items-center justify-center px-2 py-1  md:px-3 md:py-2 rounded-md disabled:opacity-50 hover:bg-gray-100 transition-colors cursor-pointer disabled:cursor-not-allowed"
@@ -101,6 +108,7 @@ const Pagination = ({ totalPages }: { totalPages: number }) => {
         </svg>
       </button>
       <button
+        type="button"
         disabled={currentPage === totalPages}
         onClick={() => handlePageChange(totalPages)}
         className="inline-flex items-center justify-center px-2 py-1 md:px-3 md:py-2 rounded-md disabled:opacity-50 hover:bg-gray-100 transition-colors cursor-pointer disabled:cursor-not-allowed"

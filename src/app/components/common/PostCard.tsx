@@ -54,6 +54,7 @@ const PostCard = ({ post }: { post: PostMeta }) => {
                 src={post.thumbnail}
                 alt={post.frontmatter.title}
                 fill
+                sizes="(min-width: 768px) 300px, 100vw"
                 className="md:object-cover object-center"
               />
             ) : (

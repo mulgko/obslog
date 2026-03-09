@@ -207,6 +207,8 @@ export function deletePost(slug: string): void {
 // lib/posts.ts — 본문 첫 이미지 추출 (frontmatter thumbnail 필드로 대체)
 // function extractFirstImage(content: string): string | null {
 //   const match = content.match(/!\[.*?\]\((.*?)\)/);
+// ![alt](https://img.png "title") 입력 시 URL에 "title"이 붙어 잘못된 썸네일 src가 만들어질 수 있습니다. =>
+// +  const match = content.match(/!\[[^\]]*]\(([^\s)]+)/);
 //   return match ? match[1] : null;
 // }
 
@@ -214,7 +216,10 @@ export function getPaginatedPosts(
   page: number,
   pageSize: number,
   tags?: string[],
-) {
+): { posts: PostMeta[]; totalPages: number; currentPage: number } {
+  const safePageSize = Math.max(1, pageSize);
+  const safePage = Math.max(1, page);
+
   const allPosts = getAllPosts();
   let filteredPosts = allPosts;
 
@@ -224,10 +229,14 @@ export function getPaginatedPosts(
     });
   }
 
-  const totalPages = Math.ceil(filteredPosts.length / pageSize);
-  const start = (page - 1) * pageSize;
-  const end = start + pageSize;
+  const totalPages = Math.max(
+    1,
+    Math.ceil(filteredPosts.length / safePageSize),
+  );
+  const currentPage = Math.min(safePage, totalPages);
+  const start = (currentPage - 1) * safePageSize;
+  const end = start + safePageSize;
   const posts = filteredPosts.slice(start, end);
 
-  return { posts, totalPages, currentPage: page };
+  return { posts, totalPages, currentPage };
 }
