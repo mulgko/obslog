@@ -9,14 +9,14 @@ const TagResetButton = () => {
   const searchParams = useSearchParams();
   const hasTags = searchParams.get("tag");
 
-  // if (!hasTags) return null;
+  if (!hasTags) return null;
 
   return (
     <button
+      type="button"
       aria-label="초기화"
       onClick={() => router.push("/")}
-      className="text-xs text-ne cursor-pointer transition-colors"
-      style={{ color: "var(--color-text-muted)" }}
+      className="text-xs text-neutral-600 hover:text-neutral-900 transition-colors cursor-pointer"
     >
       <Image src="/refresh.svg" alt="refresh" width={16} height={16} />
     </button>

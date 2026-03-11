@@ -32,12 +32,14 @@ const Header = () => {
           <ThemeToggle />
 
           <button
+            type="button"
             aria-label="검색"
             className="hidden sm:block text-sm text-neutral-600 hover:text-neutral-900 transition-colors cursor-pointer"
           >
             <Image src="/Search.svg" alt="검색" width={16} height={16} />
           </button>
           <button
+            type="button"
             aria-label="그래프 뷰"
             className="hidden sm:block text-sm text-neutral-600 hover:text-neutral-900 transition-colors cursor-pointer"
           >
@@ -58,6 +60,7 @@ const Header = () => {
             <FoldersIcon size={20} weight="bold" />
           </Link>
           <button
+            type="button"
             aria-label="검색"
             className="sm:hidden text-neutral-600 hover:text-neutral-900 transition-colors cursor-pointer"
           >

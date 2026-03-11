@@ -224,8 +224,12 @@ export function getPaginatedPosts(
   let filteredPosts = allPosts;
 
   if (tags && tags.length > 0) {
+    const normalize = (str: string) => str.trim().toLowerCase();
+    const tagsNormalized = tags.map(normalize);
     filteredPosts = filteredPosts.filter((post) => {
-      return post.frontmatter.tags?.some((tag) => tags.includes(tag));
+      return post.frontmatter.tags?.some((tag) =>
+        tagsNormalized.includes(normalize(tag)),
+      );
     });
   }
 

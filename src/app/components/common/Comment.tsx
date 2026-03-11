@@ -35,7 +35,7 @@ const Comment = () => {
   ];
   return (
     <>
-      <h2 className="font-bold text-sm text-black">Comments</h2>
+      <h2 className="font-bold text-sm text-neutral-600">Comments</h2>
       <ul className="flex flex-col w-[179px] items-start gap-[25px]">
         {commentsData.map((item) => (
           <li key={item.id} className="w-full">
@@ -52,15 +52,17 @@ const Comment = () => {
                   height={32}
                   className="rounded-full"
                 />
-                <span className="text-xs font-bold text-[#878787]">
+                <span className="text-xs font-bold text-(--color-text-subtle)">
                   {item.username}
                 </span>
               </div>
-              <p className="text-xs font-bold text-[#5e5e5e] leading-4">
+              <p className="text-xs font-bold text-(--color-text) leading-4">
                 {item.comment}
               </p>
               <div className="flex items-center justify-between w-full">
-                <span className="text-xs text-[#a1a1a1]">{item.topic}</span>
+                <span className="text-xs text-(--color-text-subtle)">
+                  {item.topic}
+                </span>
                 <svg
                   width="14"
                   height="14"
@@ -70,7 +72,7 @@ const Comment = () => {
                 >
                   <path
                     d="M5 3L9 7L5 11"
-                    stroke="#a1a1a1"
+                    stroke="currentColor"
                     strokeWidth="1.5"
                     strokeLinecap="round"
                     strokeLinejoin="round"
