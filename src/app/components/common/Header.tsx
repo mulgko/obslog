@@ -5,7 +5,8 @@ import {
   FoldersIcon,
   MagnifyingGlassIcon,
 } from "@phosphor-icons/react/dist/ssr";
-import ThemeDropdown from "./ThemeDropdown";
+// import ThemeDropdown from "./ThemeDropdown";
+import ThemeToggle from "./ThemeToggle";
 
 const Header = () => {
   return (
@@ -27,13 +28,28 @@ const Header = () => {
           >
             Series
           </Link>
+          {/* <ThemeDropdown /> */}
+          <ThemeToggle />
+
           <button
+            type="button"
             aria-label="검색"
             className="hidden sm:block text-sm text-neutral-600 hover:text-neutral-900 transition-colors cursor-pointer"
           >
-            Search
+            <Image src="/Search.svg" alt="검색" width={16} height={16} />
           </button>
-          <ThemeDropdown />
+          <button
+            type="button"
+            aria-label="그래프 뷰"
+            className="hidden sm:block text-sm text-neutral-600 hover:text-neutral-900 transition-colors cursor-pointer"
+          >
+            <Image
+              src="/Git branch.svg"
+              alt="Git branch"
+              width={16}
+              height={16}
+            />
+          </button>
 
           {/* 모바일: 아이콘 */}
           <Link
@@ -44,6 +60,7 @@ const Header = () => {
             <FoldersIcon size={20} weight="bold" />
           </Link>
           <button
+            type="button"
             aria-label="검색"
             className="sm:hidden text-neutral-600 hover:text-neutral-900 transition-colors cursor-pointer"
           >

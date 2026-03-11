@@ -9,14 +9,23 @@
   --color-surface: #ffffff;
   --color-border: #e5e5e5;
   --color-text: #171717;
+  --color-text-subtle: #878787;
   --color-text-muted: #7a6e96;
   --color-header-bg: rgba(255, 255, 255, 0.8);
   --color-dropdown-bg: #ffffff;
   --color-dropdown-border: #e5e5e5;
   --color-dropdown-hover: #f5f5f5;
   --body-gradient:
-    radial-gradient(ellipse 55% 35% at 15% 12%, rgba(108, 49, 227, 0.07) 0%, transparent 100%),
-    radial-gradient(ellipse 40% 30% at 88% 82%, rgba(108, 49, 227, 0.05) 0%, transparent 100%);
+    radial-gradient(
+      ellipse 55% 35% at 15% 12%,
+      rgba(108, 49, 227, 0.07) 0%,
+      transparent 100%
+    ),
+    radial-gradient(
+      ellipse 40% 30% at 88% 82%,
+      rgba(108, 49, 227, 0.05) 0%,
+      transparent 100%
+    );
 }
 
 [data-theme="dark"] {
@@ -25,32 +34,23 @@
   --color-surface: #1c1c1c;
   --color-border: #292929;
   --color-text: #fafafa;
+  --color-text-subtle: #a1a1a1;
   --color-text-muted: #9d8fc0;
   --color-header-bg: rgba(10, 10, 10, 0.8);
   --color-dropdown-bg: #1c1c1c;
   --color-dropdown-border: #292929;
   --color-dropdown-hover: #262626;
   --body-gradient:
-    radial-gradient(ellipse 55% 35% at 15% 12%, rgba(108, 49, 227, 0.18) 0%, transparent 100%),
-    radial-gradient(ellipse 40% 30% at 88% 82%, rgba(108, 49, 227, 0.12) 0%, transparent 100%);
-}
-
-/* Glassmorphism · Clear — Apple Tahoe */
-[data-theme="glass"] {
-  --color-bg: transparent;
-  --color-bg-subtle: rgba(255, 255, 255, 0.12);
-  --color-surface: rgba(255, 255, 255, 0.18);
-  --color-border: rgba(255, 255, 255, 0.3);
-  --color-text: #1d1d1f;
-  --color-text-muted: #7a7896;
-  --color-header-bg: rgba(255, 255, 255, 0.28);
-  --color-dropdown-bg: rgba(255, 255, 255, 0.95);
-  --color-dropdown-border: rgba(255, 255, 255, 0.6);
-  --color-dropdown-hover: rgba(255, 255, 255, 0.5);
-  --body-gradient:
-    radial-gradient(ellipse 55% 35% at 15% 12%, rgba(108, 49, 227, 0.1) 0%, transparent 100%),
-    radial-gradient(ellipse 40% 30% at 88% 82%, rgba(108, 49, 227, 0.07) 0%, transparent 100%),
-    linear-gradient(160deg, #ddeaf5 0%, #e8eef4 50%, #eeedf2 100%);
+    radial-gradient(
+      ellipse 55% 35% at 15% 12%,
+      rgba(108, 49, 227, 0.18) 0%,
+      transparent 100%
+    ),
+    radial-gradient(
+      ellipse 40% 30% at 88% 82%,
+      rgba(108, 49, 227, 0.12) 0%,
+      transparent 100%
+    );
 }
 
 /* ─── Base ──────────────────────────────────────────────── */
@@ -108,6 +108,11 @@ header nav button {
 header nav a:hover,
 header nav button:hover {
   color: var(--color-text);
+}
+
+/* Tag filter hover */
+.tag-filter-label:hover {
+  background-color: var(--color-dropdown-hover);
 }
 
 /* Sidebar */

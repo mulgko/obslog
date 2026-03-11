@@ -18,6 +18,7 @@ function toPostFrontmatter(data: Record<string, unknown>): PostFrontmatter {
     seriesOrder:
       typeof data.seriesOrder === "number" ? data.seriesOrder : undefined,
     published: Boolean(data.published),
+    thumbnail: typeof data.thumbnail === "string" ? data.thumbnail : undefined,
   };
 }
 
@@ -60,13 +61,14 @@ export function getAllPosts(): PostMeta[] {
       const fileContents = fs.readFileSync(fullPath, "utf8");
 
       // frontmatter 파싱
-      const { data } = matter(fileContents);
+      const { data, content } = matter(fileContents);
       // => { title: "...", date: "26-01-01", tags: [...], ...}
 
       // PostMeta 타입에 맞게 반환
       return {
         slug,
         frontmatter: toPostFrontmatter(data),
+        thumbnail: toPostFrontmatter(data).thumbnail ?? null,
       };
     });
 
@@ -100,6 +102,7 @@ export function getPostBySlug(slug: string): Post | null {
     slug,
     frontmatter: toPostFrontmatter(data),
     content, // getAllPosts와 달리 content 포함
+    thumbnail: toPostFrontmatter(data).thumbnail ?? null,
   };
 }
 
@@ -199,4 +202,45 @@ export function deletePost(slug: string): void {
 
   // 3. 파일 삭제 Unix 시스템에서 파일 삭제를 unlink라고 부르는 관습에서 왔습니다.
   fs.unlinkSync(fullPath);
+}
+
+// lib/posts.ts — 본문 첫 이미지 추출 (frontmatter thumbnail 필드로 대체)
+// function extractFirstImage(content: string): string | null {
+//   const match = content.match(/!\[.*?\]\((.*?)\)/);
+// ![alt](https://img.png "title") 입력 시 URL에 "title"이 붙어 잘못된 썸네일 src가 만들어질 수 있습니다. =>
+// +  const match = content.match(/!\[[^\]]*]\(([^\s)]+)/);
+//   return match ? match[1] : null;
+// }
+
+export function getPaginatedPosts(
+  page: number,
+  pageSize: number,
+  tags?: string[],
+): { posts: PostMeta[]; totalPages: number; currentPage: number } {
+  const safePageSize = Math.max(1, pageSize);
+  const safePage = Math.max(1, page);
+
+  const allPosts = getAllPosts();
+  let filteredPosts = allPosts;
+
+  if (tags && tags.length > 0) {
+    const normalize = (str: string) => str.trim().toLowerCase();
+    const tagsNormalized = tags.map(normalize);
+    filteredPosts = filteredPosts.filter((post) => {
+      return post.frontmatter.tags?.some((tag) =>
+        tagsNormalized.includes(normalize(tag)),
+      );
+    });
+  }
+
+  const totalPages = Math.max(
+    1,
+    Math.ceil(filteredPosts.length / safePageSize),
+  );
+  const currentPage = Math.min(safePage, totalPages);
+  const start = (currentPage - 1) * safePageSize;
+  const end = start + safePageSize;
+  const posts = filteredPosts.slice(start, end);
+
+  return { posts, totalPages, currentPage };
 }
