@@ -32,6 +32,13 @@ function safeSlug(slug: string): string {
   return base;
 }
 
+function resolvePostPath(slug: string, originalFileName?: string): string {
+  const fileName = originalFileName
+    ? path.basename(originalFileName)
+    : `${safeSlug(slug)}.md`;
+  return path.join(postDirectory, fileName);
+}
+
 // 비즈니스 로직 (순수 함수)
 // 마크다운 CRUD
 
@@ -94,7 +101,7 @@ export function getPostBySlug(slug: string): Post | null {
   if (!found) return null;
 
   // 01. slug 검증 후 파일 경로 조합
-  const fullPath = path.join(postDirectory, found.originalFileName);
+  const fullPath = resolvePostPath(slug, found.originalFileName);
 
   // 02. 파일 존재 여부 확인
   // if (!fs.existsSync(fullPath)) return null;
@@ -168,7 +175,7 @@ export function getAllSeries(): string[] {
 // - savePost()
 export function savePost(post: Post, { overwrite = false } = {}): void {
   // 1. slug 검증 후 파일 경로 조립
-  const fullPath = path.join(postDirectory, `${safeSlug(post.slug)}.md`);
+  const fullPath = resolvePostPath(post.slug, post.originalFileName);
   //    → /Users/dk/projects/obslog/content/posts/next-intro.md
 
   // 2. 중복 파일 체크
@@ -202,9 +209,9 @@ export function savePost(post: Post, { overwrite = false } = {}): void {
 }
 
 // - deletePost()
-export function deletePost(slug: string): void {
+export function deletePost(slug: string, originalFileName?: string): void {
   // 1. slug 검증 후 파일 경로 조립
-  const fullPath = path.join(postDirectory, `${safeSlug(slug)}.md`);
+  const fullPath = resolvePostPath(slug, originalFileName);
   //    → /Users/dk/projects/obslog/content/posts/next-intro.md
 
   // 2. 파일 존재 여부 확인
