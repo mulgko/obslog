@@ -53,7 +53,12 @@ export function getAllPosts(): PostMeta[] {
     // => md 파일만 필터링 (.DS_Store 등 제외)
     .map((fileName) => {
       // 03. slug = 파일명에서 .md 제거
-      const slug = fileName.replace(/\.md$/, "");
+      const slug = fileName
+        .replace(/\.md$/, "")
+        .toLowerCase()
+        .replace(/\s+/g, "-")
+        .replace(/[^a-z0-9-]/g, "")
+        .replace(/-+/g, "-"); // 연속된 - 를 하나로
       // => "Obslog"
 
       // 파일 내용 읽기
@@ -69,6 +74,7 @@ export function getAllPosts(): PostMeta[] {
         slug,
         frontmatter: toPostFrontmatter(data),
         thumbnail: toPostFrontmatter(data).thumbnail ?? null,
+        originalFileName: fileName,
       };
     });
 
@@ -83,11 +89,15 @@ export function getAllPosts(): PostMeta[] {
 
 // - getPostBySlug(slug)
 export function getPostBySlug(slug: string): Post | null {
+  const posts = getAllPosts();
+  const found = posts.find((p) => p.slug === slug);
+  if (!found) return null;
+
   // 01. slug 검증 후 파일 경로 조합
-  const fullPath = path.join(postDirectory, `${safeSlug(slug)}.md`);
+  const fullPath = path.join(postDirectory, found.originalFileName);
 
   // 02. 파일 존재 여부 확인
-  if (!fs.existsSync(fullPath)) return null;
+  // if (!fs.existsSync(fullPath)) return null;
   // => 없는 slug 요청 시 null 반환 (404처리를 호출부에서)
 
   // 03. 파일 내용 읽기
@@ -103,6 +113,7 @@ export function getPostBySlug(slug: string): Post | null {
     frontmatter: toPostFrontmatter(data),
     content, // getAllPosts와 달리 content 포함
     thumbnail: toPostFrontmatter(data).thumbnail ?? null,
+    originalFileName: found.originalFileName,
   };
 }
 
