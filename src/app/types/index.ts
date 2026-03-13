@@ -17,6 +17,7 @@ export interface PostMeta {
   slug: string;
   frontmatter: PostFrontmatter;
   thumbnail: string | null;
+  originalFileName: string;
 }
 
 // 포스트 상세 페이지에서 사용 가능 (본문 포함)

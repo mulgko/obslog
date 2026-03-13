@@ -1,9 +1,9 @@
 import React from "react";
 import { Metadata } from "next";
-import PostCard from "../components/common/PostCard";
-import { getPaginatedPosts } from "../lib/posts";
-import Pagination from "../components/common/Pagination";
-import { siteConfig } from "../lib/config";
+import PostCard from "../../components/common/PostCard";
+import { getPaginatedPosts } from "../../lib/posts";
+import Pagination from "../../components/common/Pagination";
+import { siteConfig } from "../../lib/config";
 
 export const metadata: Metadata = {
   title: `Home | ${siteConfig.siteName}`,
