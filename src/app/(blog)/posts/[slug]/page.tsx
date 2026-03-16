@@ -2,6 +2,7 @@ import React from "react";
 import { getPostBySlug } from "@/src/app/lib/posts";
 import { markdownToHtml } from "@/src/app/lib/markdown";
 import { notFound } from "next/navigation";
+import PostContent from "./_components/PostContent";
 
 type Props = {
   params: Promise<{ slug: string }>;
@@ -17,7 +18,11 @@ const page = async ({ params }: Props) => {
 
   const html = await markdownToHtml(post.content);
 
-  return <div>{html}</div>;
+  return (
+    <div>
+      <PostContent html={html} />
+    </div>
+  );
 };
 
 export default page;
