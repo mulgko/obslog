@@ -24,3 +24,9 @@ export interface PostMeta {
 export interface Post extends PostMeta {
   content: string;
 }
+
+export interface Heading {
+  id: string;
+  text: string;
+  level: number; // 1–6
+}
