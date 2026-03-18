@@ -1,9 +1,10 @@
 import React from "react";
 
-import { markdownToHtml } from "@/src/app/lib/markdown";
+import { extractHeadings, markdownToHtml } from "@/src/app/lib/markdown";
 import { notFound } from "next/navigation";
 import PostContent from "./_components/PostContent";
 import PostHeader from "./_components/PostHeader";
+import TableOfContents from "./_components/TableOfContents";
 import { getAllPosts, getPostBySlug } from "@/src/app/lib/posts";
 
 type Props = {
@@ -33,16 +34,24 @@ const page = async ({ params }: Props) => {
     notFound();
   }
 
-  const html = await markdownToHtml(post.content);
+  const [html, headings] = await Promise.all([
+    markdownToHtml(post.content),
+    Promise.resolve(extractHeadings(post.content)),
+  ]);
 
   return (
-    <div>
-      <PostHeader
-        title={post.frontmatter.title}
-        date={post.frontmatter.date}
-        tags={post.frontmatter.tags || []}
-      />
-      <PostContent html={html} />
+    <div className="flex gap-10 items-start">
+      <div className="flex-1 min-w-0">
+        <PostHeader
+          title={post.frontmatter.title}
+          date={post.frontmatter.date}
+          tags={post.frontmatter.tags || []}
+        />
+        <PostContent html={html} />
+      </div>
+      <aside className="w-48 shrink-0 hidden lg:block sticky top-24">
+        <TableOfContents headings={headings} />
+      </aside>
     </div>
   );
 };
