@@ -32,6 +32,13 @@ function safeSlug(slug: string): string {
   return base;
 }
 
+function resolvePostPath(slug: string, originalFileName?: string): string {
+  const fileName = originalFileName
+    ? path.basename(originalFileName)
+    : `${safeSlug(slug)}.md`;
+  return path.join(postDirectory, fileName);
+}
+
 // 비즈니스 로직 (순수 함수)
 // 마크다운 CRUD
 
@@ -53,7 +60,12 @@ export function getAllPosts(): PostMeta[] {
     // => md 파일만 필터링 (.DS_Store 등 제외)
     .map((fileName) => {
       // 03. slug = 파일명에서 .md 제거
-      const slug = fileName.replace(/\.md$/, "");
+      const slug = fileName
+        .replace(/\.md$/, "")
+        .toLowerCase()
+        .replace(/\s+/g, "-")
+        .replace(/[^a-z0-9-]/g, "")
+        .replace(/-+/g, "-"); // 연속된 - 를 하나로
       // => "Obslog"
 
       // 파일 내용 읽기
@@ -69,6 +81,7 @@ export function getAllPosts(): PostMeta[] {
         slug,
         frontmatter: toPostFrontmatter(data),
         thumbnail: toPostFrontmatter(data).thumbnail ?? null,
+        originalFileName: fileName,
       };
     });
 
@@ -83,11 +96,15 @@ export function getAllPosts(): PostMeta[] {
 
 // - getPostBySlug(slug)
 export function getPostBySlug(slug: string): Post | null {
+  const posts = getAllPosts();
+  const found = posts.find((p) => p.slug === slug);
+  if (!found) return null;
+
   // 01. slug 검증 후 파일 경로 조합
-  const fullPath = path.join(postDirectory, `${safeSlug(slug)}.md`);
+  const fullPath = resolvePostPath(slug, found.originalFileName);
 
   // 02. 파일 존재 여부 확인
-  if (!fs.existsSync(fullPath)) return null;
+  // if (!fs.existsSync(fullPath)) return null;
   // => 없는 slug 요청 시 null 반환 (404처리를 호출부에서)
 
   // 03. 파일 내용 읽기
@@ -103,6 +120,7 @@ export function getPostBySlug(slug: string): Post | null {
     frontmatter: toPostFrontmatter(data),
     content, // getAllPosts와 달리 content 포함
     thumbnail: toPostFrontmatter(data).thumbnail ?? null,
+    originalFileName: found.originalFileName,
   };
 }
 
@@ -157,7 +175,7 @@ export function getAllSeries(): string[] {
 // - savePost()
 export function savePost(post: Post, { overwrite = false } = {}): void {
   // 1. slug 검증 후 파일 경로 조립
-  const fullPath = path.join(postDirectory, `${safeSlug(post.slug)}.md`);
+  const fullPath = resolvePostPath(post.slug, post.originalFileName);
   //    → /Users/dk/projects/obslog/content/posts/next-intro.md
 
   // 2. 중복 파일 체크
@@ -191,9 +209,9 @@ export function savePost(post: Post, { overwrite = false } = {}): void {
 }
 
 // - deletePost()
-export function deletePost(slug: string): void {
+export function deletePost(slug: string, originalFileName?: string): void {
   // 1. slug 검증 후 파일 경로 조립
-  const fullPath = path.join(postDirectory, `${safeSlug(slug)}.md`);
+  const fullPath = resolvePostPath(slug, originalFileName);
   //    → /Users/dk/projects/obslog/content/posts/next-intro.md
 
   // 2. 파일 존재 여부 확인

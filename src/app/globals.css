@@ -1,9 +1,11 @@
 @import "tailwindcss";
+@plugin "@tailwindcss/typography";
 
 /* ─── Theme Tokens ─────────────────────────────────────── */
 
 :root,
 [data-theme="light"] {
+  --heading-flash-color: rgba(109, 73, 111, 0.45);
   --color-bg: #ffffff;
   --color-bg-subtle: #f5f5f5;
   --color-surface: #ffffff;
@@ -29,6 +31,7 @@
 }
 
 [data-theme="dark"] {
+  --heading-flash-color: rgba(255, 255, 255, 0.35);
   --color-bg: #0a0a0a;
   --color-bg-subtle: #171717;
   --color-surface: #1c1c1c;
@@ -69,6 +72,50 @@ html {
 body {
   font-family: var(--font-pretendard), sans-serif;
   min-height: 100vh;
+}
+
+/* ─── Prose: dark mode ──────────────────────────────────── */
+
+[data-theme="dark"] .prose {
+  --tw-prose-body: var(--color-text);
+  --tw-prose-headings: var(--color-text);
+  --tw-prose-lead: var(--color-text-subtle);
+  --tw-prose-links: var(--color-text);
+  --tw-prose-bold: var(--color-text);
+  --tw-prose-counters: var(--color-text-subtle);
+  --tw-prose-bullets: var(--color-text-subtle);
+  --tw-prose-hr: var(--color-border);
+  --tw-prose-quotes: var(--color-text);
+  --tw-prose-quote-borders: var(--color-border);
+  --tw-prose-captions: var(--color-text-subtle);
+  --tw-prose-code: var(--color-text);
+  --tw-prose-pre-code: var(--color-text-subtle);
+  --tw-prose-pre-bg: var(--color-surface);
+  --tw-prose-th-borders: var(--color-border);
+  --tw-prose-td-borders: var(--color-border);
+}
+
+/* ─── Heading flash on TOC click ───────────────────────── */
+
+@keyframes heading-flash-light {
+  0%, 3% { background-color: rgba(109, 73, 111, 0.45); }
+  100%   { background-color: transparent; }
+}
+
+@keyframes heading-flash-dark {
+  0%, 3% { background-color: rgba(255, 255, 255, 0.55); }
+  100%   { background-color: transparent; }
+}
+
+:root .heading-highlight,
+[data-theme="light"] .heading-highlight {
+  animation: heading-flash-light 3.5s linear forwards !important;
+  border-radius: 4px;
+}
+
+[data-theme="dark"] .heading-highlight {
+  animation: heading-flash-dark 3.5s linear forwards !important;
+  border-radius: 4px;
 }
 
 /* ─── Component Overrides ───────────────────────────────── */
